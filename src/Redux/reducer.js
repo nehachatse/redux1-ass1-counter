@@ -1,4 +1,4 @@
-import { DECREMENT, INCREMENT } from "./actionType";
+import { DECREMENT, DIVISION, INCREMENT, MULTIPLICATION } from "./actionType";
 
 const initState = {
   count: 0
@@ -8,7 +8,7 @@ export const reducer = (state = initState, { type, payload }) => {
     case INCREMENT:
       return {
         ...state,
-        count: state.count + payload
+        count: state.count + Number(payload)
       };
 
     case DECREMENT:
@@ -17,7 +17,22 @@ export const reducer = (state = initState, { type, payload }) => {
         count: state.count - payload
       };
 
+    case MULTIPLICATION:
+      return {
+        ...state,
+        count: state.count * payload
+      };
+
+    case DIVISION:
+      return {
+        ...state,
+        count: state.count / payload
+      };
+
     default:
-      return state;
+      return {
+        ...state,
+        count: 0
+      };
   }
 };
